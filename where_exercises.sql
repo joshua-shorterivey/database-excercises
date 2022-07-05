@@ -79,6 +79,7 @@ SELECT *
 FROM employees
 WHERE last_name LIKE '%q%';
 
+-- garbage text
 
 -- Find all current or previous employees with a 'q' in their last name but not 'qu'. How many employees are found?
 -- 547 employees meet the criteria
