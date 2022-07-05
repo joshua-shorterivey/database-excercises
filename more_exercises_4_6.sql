@@ -12,18 +12,18 @@ USE sakila;
 	-- *returned 24 rows
     DESCRIBE address;
 	SELECT * FROM address LIMIT 10;
-	SELECT phone, district FROM address WHERE district in  ('California', 'England', 'Taipei', 'West Java'); 
+	SELECT phone, district FROM address WHERE district IN  ('California', 'England', 'Taipei', 'West Java'); 
 
 -- Select the payment id, amount, and payment date columns from the payment table for payments made on 05/25/2005, 05/27/2005, and 05/29/2005. (Use the IN operator and the DATE function, instead of the AND operator as in previous exercises.)
 	-- *documentation: DATA_FORMAT to convert the payment_date for easy comparison. %Y  (four digit year), %m (month), %d (day) used to create formatting
 	-- 	used another list comparison. returned 321 rows
-    SELECT payment_id, amount, payment_date FROM payment WHERE DATE_FORMAT(payment_date, '%Y%m%d') in ('200505252', '20050527', '20050529');
+    SELECT payment_id, amount, payment_date FROM payment WHERE DATE_FORMAT(payment_date, '%Y%m%d') IN ('200505252', '20050527', '20050529');
 	SELECT * FROM payment LIMIT 5;
     
 -- Select all columns from the film table for films rated G, PG-13 or NC-17.
 	-- Used another bucket. returned 611
     SELECT DISTINCT rating FROM film;
-	SELECT * FROM film WHERE rating in ('G', 'PG-13', 'NC-17' );
+	SELECT * FROM film WHERE rating IN ('G', 'PG-13', 'NC-17' );
  
 /* BETWEEN operator */
 -- Select all columns from the payment table for payments made between midnight 05/25/2005 and 1 second before midnight 05/26/2005.
