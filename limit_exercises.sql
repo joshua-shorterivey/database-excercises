@@ -6,7 +6,7 @@ USE employees;
 SELECT DISTINCT last_name
 FROM employees
 ORDER BY last_name DESC
-LIMIT 10;
+LIMIT 10; 
 
 -- 3: Find all previous or current employees hired in the 90s and born on Christmas. Find the first 5 employees hired in the 90's by sorting by hire date and limiting your results to the first 5 records. Write a comment in your code that lists the five names of the employees returned.
 -- First Five: Alselm Cappello, Utz Mandell, Bouchung Schreiter, Baocai Kushner, Petter Stroustrup
@@ -27,6 +27,4 @@ WHERE hire_date BETWEEN 19900101 AND 19991231
 	AND DATE_FORMAT(birth_date, '%m%d') = 1225
 ORDER BY hire_date
 LIMIT 45, 5;
- 
-
 

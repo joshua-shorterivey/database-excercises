@@ -25,7 +25,7 @@ WHERE gender = 'M'
         OR first_name = 'Maya');
 
 -- Find all current or previous employees whose last name starts with 'E'. Enter a comment with the number of employees whose last name starts with E.
--- *returned 1000 (limit)
+-- *returned 7330
 SELECT * 
 FROM employees
 WHERE last_name LIKE 'E%';
@@ -72,6 +72,13 @@ SELECT *
 FROM employees
 WHERE hire_date BETWEEN 19900101 AND 19991231
 	AND DATE_FORMAT(birth_date, '%m%d') = 1225;
+
+SELECT *
+FROM employees
+WHERE hire_date BETWEEN 19900101 AND 19991231
+GROUP BY birth_date
+LIMIT 5;
+
 
 -- Find all current or previous employees with a 'q' in their last name. Enter a comment with the number of records returned.
 -- 1873 employees have a 'q' in their last name. 
