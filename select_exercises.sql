@@ -15,6 +15,8 @@
 	-- Answer: 23
     
 	-- Q3c. What is the primary key for the albums table?
+		SELECT id
+        FROM albums;
 	-- Answer: 	The primary key is the 'id' column 
     
 	-- Q3d. What is the oldest release date for any album in the albums table? What is the most recent release date?
@@ -52,5 +54,6 @@
 		SELECT * FROM albums WHERE genre = 'Rock';
 	-- Answer: 'Hard rock', 'Progressive rock', and 'Rock' are all different string values
     -- Answer: the genre 'Rock' is a different idea than "genres containing the word 'rock'"
+
 -- Be sure to add, commit, and push your work. 
 
