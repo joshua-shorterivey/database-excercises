@@ -80,9 +80,13 @@ SELECT CONCAT(employees.first_name, ' ', employees.last_name) as Employee, COUNT
 FROM salaries
 LEFT OUTER JOIN employees
 ON salaries.emp_no = employees.emp_no
-GROUP BY salary; 
+GROUP BY Employee
+ORDER BY COUNT(*) DESC
+LIMIT 1000; 
 
 -- Find the maximum salary for each employee.
+
+
 -- Find the minimum salary for each employee.
 -- Find the standard deviation of salaries for each employee.
 -- Now find the max salary for each employee where that max salary is greater than $150,000.
