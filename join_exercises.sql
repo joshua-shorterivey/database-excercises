@@ -90,10 +90,96 @@ GROUP BY title
 ;
  
 -- Find the current salary of all current managers.
+describe salaries;
+SELECT d.dept_name as Department, CONCAT(e.first_name, ' ', e.last_name) as Manager, s.salary as Salary
+FROM dept_manager dm
+JOIN salaries s
+USING(emp_no)
+JOIN departments d
+USING(dept_no)
+JOIN employees e 
+USING (emp_no)
+WHERE dm.to_date = '9999-01-01'
+	AND s.to_date = '9999-01-01'
+ORDER BY Department;
+
+
 -- Find the number of current employees in each department.
+SELECT dept_no, d.dept_name, COUNT(*)
+FROM departments d
+JOIN dept_emp de
+USING (dept_no)
+JOIN employees e
+USING (emp_no)
+WHERE de.to_date = '9999-01-01'
+GROUP BY d.dept_name
+ORDER BY dept_no
+;
+
 -- Which department has the highest average salary? Hint: Use current not historic information.
+SELECT dept_no, dept_name, AVG(salary)
+FROM departments d
+JOIN dept_emp de
+USING (dept_no)
+JOIN salaries s
+USING (emp_no)
+WHERE s.to_date = '9999-01-01'
+	AND de.to_date = '9999-01-01'
+GROUP BY d.dept_name
+ORDER BY AVG(salary) DESC
+LIMIT 1
+;
+
 -- Who is the highest paid employee in the Marketing department?
+SELECT CONCAT(e.first_name, ' ', e.last_name) as Employee, s.salary
+FROM employees e 
+JOIN salaries s
+USING (emp_no)
+JOIN dept_emp de
+USING (emp_no)
+WHERE de.dept_no = 'd001'
+ORDER BY s.salary DESC
+LIMIT 1
+;
 -- Which current department manager has the highest salary?
+SELECT CONCAT (e.first_name, ' ', e.last_name) AS manager, s.salary, d.dept_name as department
+FROM employees e
+JOIN dept_manager dm
+USING(emp_no)
+JOIN departments d
+USING (dept_no)
+JOIN salaries s
+USING (emp_no)
+WHERE dm.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1
+;
+
 -- Determine the average salary for each department. Use all salary information and round your results.
+SELECT d.dept_name, ROUND(AVG(s.salary)) average_salary
+FROM departments d
+JOIN dept_emp de
+USING(dept_no)
+JOIN employees e
+USING (emp_no)
+JOIN salaries s
+USING (emp_no)
+GROUP BY d.dept_name
+ORDER by average_salary DESC
+;
+
 -- Bonus Find the names of all current employees, their department name, and their current manager's name.
+SELECT employees.first_name, employees.last_name, departments.dept_name
+FROM employees
+JOIN dept_emp
+USING(emp_no)
+JOIN departments 
+USING(dept_no)
+JOIN dept_manager
+USING (dept_no)
+WHERE dept_emp.to_date = '9999-01-01'
+ORDER BY departments.dept_name
+
+;
+
 -- Bonus Who is the highest paid employee within each department.
