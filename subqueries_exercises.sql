@@ -93,10 +93,23 @@ GROUP BY title
     
 
 -- How many current salaries are within 1 standard deviation of the current highest salary? (Hint: you can use a built in function to calculate the standard deviation.) What percentage of all salaries is this?
- -- 78 lie within 1 standard deviation of the highest salary
+ -- 83 lie within 1 standard deviation of the highest salary
  -- .0029%
 SELECT MAX(salary), STD(salary), MAX(salary) - STD(salary)
 FROM salaries s
+;
+
+SELECT COUNT(*)
+FROM salaries s 
+WHERE s.salary BETWEEN (
+	SELECT MAX(salary) - STD(s.salary)
+	FROM salaries s
+    WHERE s.to_date > NOW()
+	)  AND (
+	SELECT MAX(s.salary) 
+    FROM salaries s
+    WHERE s.to_date > NOW()
+    ) AND s.to_date > NOW()
 ;
 
 SELECT 100 * ( COUNT(*) / (SELECT COUNT(*) FROM salaries s))
