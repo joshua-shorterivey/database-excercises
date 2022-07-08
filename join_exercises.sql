@@ -186,7 +186,8 @@ LIMIT 1
 ;
 
 -- Bonus Who is the highest paid employee within each department.
-SELECT d.dept_name, MAX(s.salary) max_salary, e.emp_no
+-- SELECT d.dept_name, MAX(s.salary) max_salary, e.emp_no
+SELECT *
 FROM employees e
 JOIN dept_emp de
 USING(emp_no)
@@ -195,8 +196,8 @@ USING(dept_no)
 JOIN salaries s
 USING (emp_no)
 WHERE s.to_date = '9999-01-01'
-GROUP BY d.dept_name, e.emp_no
-ORDER by max_salary DESC
+GROUP BY d.dept_name
+ORDER by MAX(s.salary) DESC
 ;
 
 
