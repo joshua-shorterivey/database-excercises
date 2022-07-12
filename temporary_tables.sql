@@ -17,7 +17,7 @@ USE employees;
 	;
     
 -- Add a column named full_name to this table. It should be a VARCHAR whose length is the sum of the lengths of the first name and last name columns
-	ALTER TABLE employees_with_departments ADD full_name VARCHAR(30);
+	ALTER TABLE employees_with_departments ADD full_name VARCHAR(30); -- adds new column name full_name with type 
 	SELECT * -- check to see if rows copied over properly. test = good
 	FROM employees_with_departments
 	LIMIT 10
@@ -25,7 +25,7 @@ USE employees;
 	describe employees_with_departments;
 
 -- Update the table so that full name column contains the correct data
-	UPDATE employees_with_departments
+	UPDATE employees_with_departments -- specifies which table to work in
     SET full_name = 
 	CONCAT(employees_with_departments.first_name, ' ', employees_with_departments.last_name)
     ;
@@ -88,8 +88,7 @@ USE employees;
 		--     /
 		--     (SELECT stddev(salary) FROM salaries) AS zscore
 		-- FROM salaries;
-
-	USE employees;
+    
 	CREATE TEMPORARY TABLE leavitt_1865.current_salaries AS
     SELECT dept_no, emp_no, salary, dept_name, 
 		(salary - (SELECT AVG(salary) FROM salaries))
@@ -106,11 +105,16 @@ USE employees;
 	;
     
     USE leavitt_1865;
+    
 
 	SELECT dept_name, AVG(salary) as dept_average, AVG(zscore)
     FROM current_salaries
     GROUP BY dept_name
     ORDER BY AVG(zscore) DESC
 	;
+    
+    select distinct make
+    from cars;
+    
 
     
